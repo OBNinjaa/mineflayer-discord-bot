@@ -34,7 +34,7 @@ function initialize() {
     port: port || null,
     auth: auth,
     username: username,
-    password: password, // Comment me out if you are connecting to an offline server
+    password: password || null,
     hideErrors: true,
     physicsEnabled: true,
   });
