@@ -14,6 +14,8 @@ if (Number(process.version.slice(1).split(".")[0]) < 10 && Number(process.versio
 const config = require("./config.json");
 const { host, port, version, auth, username, password, messagehook, eventshook, token, prefix, ownername } = config;
 
+console.log(colors.yellow("Don't fill out the password field in config.json if you're using a non premium account.\nAnd set auth to mojang also!"));
+
 function ScriptsLoad(bot) {
   const EVENTS_DIR = path.join(__dirname, "events/mineflayer");
 
