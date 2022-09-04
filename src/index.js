@@ -13,11 +13,6 @@ if (Number(process.version.slice(1).split(".")[0]) < 10 && Number(process.versio
 
 const config = require("./config.json");
 const { host, port, version, auth, username, password, messagehook, eventshook, token, prefix, ownername } = config;
-if (!host || !version || !auth || !username || !password || !messagehook || !eventshook || !token || !prefix || !ownername) {
-  console.error(`[!] You must fill out the config!`.red);
-  console.log(`[!] Located in ${__dirname.yellow}`.red);
-  process.exit(1);
-}
 
 function ScriptsLoad(bot) {
   const EVENTS_DIR = path.join(__dirname, "events/mineflayer");
@@ -36,7 +31,7 @@ function initialize() {
   let bot = mineflayer.createBot({
     host: host,
     version: version,
-    port: port || 25565,
+    port: port || null,
     auth: auth,
     username: username,
     password: password,
