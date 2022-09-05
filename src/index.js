@@ -14,7 +14,8 @@ if (Number(process.version.slice(1).split(".")[0]) < 10 && Number(process.versio
 const config = require("./config.json");
 const { host, port, version, auth, username, password, messagehook, eventshook, token, prefix, ownername } = config;
 
-console.log(colors.yellow("Don't fill out the password field in config.json if you're using a non premium account.\nAnd set auth to mojang also!"));
+console.log(colors.yellow("In order to use cracked accounts keep the password field in your config to blank"));
+console.log(colors.yellow("And if you're using an IP such as hypixel.net then keep port field blank"));
 
 function ScriptsLoad(bot) {
   const EVENTS_DIR = path.join(__dirname, "events/mineflayer");
