@@ -4,7 +4,7 @@
  * @since 1.0.0
  */
 
-const { prefix } = require("./../../config.json");
+const { prefix, successColor, errorColor, infoColor } = require("./../../config.json");
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
@@ -32,7 +32,7 @@ module.exports = {
        */
 
       let helpEmbed = new MessageEmbed();
-      helpEmbed.setColor(0xd4ff4f);
+      helpEmbed.setColor(infoColor);
       helpEmbed.setThumbnail(message.client.user.displayAvatarURL());
       helpEmbed.setURL(process.env.URL);
       helpEmbed.setTitle("List of all my commands");
@@ -66,7 +66,7 @@ module.exports = {
      * @description Embed of Help command for a specific command.
      */
 
-    let commandEmbed = new MessageEmbed().setColor(0xd4ff4f).setTitle(`Command: ${command.name}`);
+    let commandEmbed = new MessageEmbed().setColor(infoColor).setTitle(`Command: ${command.name}`);
 
     if (command.description) commandEmbed.setDescription(`${command.description}`);
 
