@@ -46,7 +46,7 @@ function initialize() {
   ScriptsLoad(bot);
 
   bot.on("end", (reason) => {
-    console.log(`[${new Date().toLocaleTimeString().gray}] ${`Disconnected`.red}`, colors.yellow(`Attemp to reconnect in 5 seconds ${reason}`));
+    console.log(`[${new Date().toLocaleTimeString().gray}] ${`Disconnected`.red}`, colors.yellow(`Attempting to reconnect in 5 seconds ${reason}`));
     setTimeout(() => initialize(), 5000);
   });
 }
