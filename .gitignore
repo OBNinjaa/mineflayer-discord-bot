@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 keys.json
 *.json
+*.json
