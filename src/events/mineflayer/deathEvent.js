@@ -2,7 +2,7 @@ const mineflayer = require("mineflayer");
 const colors = require("colors");
 const request = require("request");
 
-const { messagehook, host } = require("../../config.json");
+const { eventshook, host } = require("../../config.json");
 
 /**
  * @param {mineflayer.Bot} bot
@@ -12,7 +12,7 @@ module.exports = (bot) => {
   bot.on("messagestr", (message, messagePosition, jsonMsg) => {
     if (jsonMsg.json.translate === "death.attack.player") {
       console.log(`[${new Date().toLocaleTimeString().gray}] ${message.magenta}`);
-      var URL = messagehook;
+      var URL = eventshook;
       request.post(URL, {
         json: {
           content: null,
@@ -37,7 +37,7 @@ module.exports = (bot) => {
     // Admin Kill
     if (jsonMsg.json.translate === "chat.type.admin") {
       console.log(`[${new Date().toLocaleTimeString().gray}] ${message.magenta}`);
-      var URL = messagehook;
+      var URL = eventshook;
       request.post(URL, {
         json: {
           content: null,
