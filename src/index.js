@@ -39,7 +39,7 @@ function initialize() {
     username: username,
     password: password || null,
     hideErrors: true,
-    physicsEnabled: true,
+    // physicsEnabled: true,
   });
 
   module.exports = bot;
