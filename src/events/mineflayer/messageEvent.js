@@ -21,7 +21,7 @@ module.exports = (bot) => {
         embeds: [
           {
             title: `**${host.toUpperCase()}**`,
-            description: `**${username}**\n **${message}**`,
+            description: `**${username}** : **${message}**`,
             color: 16276813,
             footer: {
               text: `${new Date().toLocaleTimeString()}`,
