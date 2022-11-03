@@ -62,7 +62,7 @@ const client = new Client({
  * @type {String[]}
  */
 
-const eventFiles = fs.readdirSync("./src/events/discord").filter((file) => file.endsWith(".js"));
+const eventFiles = fs.readdirSync(__dirname, "events/discord").filter((file) => file.endsWith(".js"));
 
 for (const file of eventFiles) {
   const event = require(`./events/discord/${file}`);
