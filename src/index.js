@@ -7,15 +7,40 @@ const { Client, Collection, Intents } = require("discord.js");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 
-if (Number(process.version.slice(1).split(".")[0]) < 10 && Number(process.version.slice(1).split(".")[0]) < 4) {
-  throw new Error("You must be using node version 10.4.0 or higher to use this bot.");
+if (
+  Number(process.version.slice(1).split(".")[0]) < 10 &&
+  Number(process.version.slice(1).split(".")[0]) < 4
+) {
+  throw new Error(
+    "You must be using node version 10.4.0 or higher to use this bot."
+  );
 }
 
 const config = require("./config.json");
-const { host, port, version, auth, username, password, messagehook, eventshook, token, prefix, ownername } = config;
+const {
+  host,
+  port,
+  version,
+  auth,
+  username,
+  password,
+  messagehook,
+  eventshook,
+  token,
+  prefix,
+  ownername,
+} = config;
 
-console.log(colors.yellow("In order to use cracked accounts keep the password field in your config to blank"));
-console.log(colors.yellow("And if you're using an IP such as hypixel.net then keep port field blank"));
+console.log(
+  colors.yellow(
+    "In order to use cracked accounts keep the password field in your config to blank"
+  )
+);
+console.log(
+  colors.yellow(
+    "And if you're using an IP such as hypixel.net then keep port field blank"
+  )
+);
 
 function ScriptsLoad(bot) {
   const EVENTS_DIR = path.join(__dirname, "events/mineflayer");
@@ -27,7 +52,11 @@ function ScriptsLoad(bot) {
 
   bot.loadPlugins(events);
 
-  console.log(`[${new Date().toLocaleTimeString().gray}] ${`Loaded ${events.length} events`.green}`);
+  console.log(
+    `[${new Date().toLocaleTimeString().gray}] ${
+      `Loaded ${events.length} events`.green
+    }`
+  );
 }
 
 function initialize() {
@@ -46,7 +75,10 @@ function initialize() {
   ScriptsLoad(bot);
 
   bot.on("end", (reason) => {
-    console.log(`[${new Date().toLocaleTimeString().gray}] ${`Disconnected`.red}`, colors.yellow(`Attempting to reconnect in 5 seconds ${reason}`));
+    console.log(
+      `[${new Date().toLocaleTimeString().gray}] ${`Disconnected`.red}`,
+      colors.yellow(`Attempting to reconnect in 5 seconds ${reason}`)
+    );
     setTimeout(() => initialize(), 5000);
   });
 }
@@ -62,14 +94,19 @@ const client = new Client({
  * @type {String[]}
  */
 
-const eventFiles = fs.readdirSync(__dirname, "events/discord").filter((file) => file.endsWith(".js"));
+const eventFiles = fs
+  .readdirSync("./src/events/discord")
+  .filter((file) => file.endsWith(".js"));
 
 for (const file of eventFiles) {
   const event = require(`./events/discord/${file}`);
   if (event.once) {
     client.once(event.name, (...args) => event.execute(...args, client));
   } else {
-    client.on(event.name, async (...args) => await event.execute(...args, client));
+    client.on(
+      event.name,
+      async (...args) => await event.execute(...args, client)
+    );
   }
 }
 client.commands = new Collection();
@@ -88,7 +125,9 @@ client.triggers = new Collection();
 const commandFolders = fs.readdirSync("./src/commands");
 
 for (const folder of commandFolders) {
-  const commandFiles = fs.readdirSync(`./src/commands/${folder}`).filter((file) => file.endsWith(".js"));
+  const commandFiles = fs
+    .readdirSync(`./src/commands/${folder}`)
+    .filter((file) => file.endsWith(".js"));
   for (const file of commandFiles) {
     const command = require(`./commands/${folder}/${file}`);
     client.commands.set(command.name, command);
