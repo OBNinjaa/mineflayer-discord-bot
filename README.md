@@ -1,4 +1,4 @@
-# Mineflayer Discord Bot (no longer working on it)
+# Mineflayer Discord Bot
 
 ## Example Config
 
