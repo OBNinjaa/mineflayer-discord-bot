@@ -33,9 +33,7 @@ module.exports = {
     userToEmbed.setColor(successColor);
     userToEmbed.setTitle("Teleporting Started!");
     userToEmbed
-      .setDescription(
-        `**${bot.username}** has sent a teleport request to **${userTo}**.\nYou can use \`${prefix}location\` to check the current location.`
-      )
+      .setDescription(`**${bot.username}** has sent a teleport request to **${userTo}**.\nYou can use \`${prefix}location\` to check the current location.`)
       .addField(`User currently set:`, `\n**User:** **${userTo[0]}**`);
     message.channel.send({ embeds: [userToEmbed] });
     bot.chat(`/tpa ${userTo[0]}`);

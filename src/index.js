@@ -12,7 +12,7 @@ if (Number(process.version.slice(1).split(".")[0]) < 10 && Number(process.versio
 }
 
 const config = require("./config.json");
-const { host, port, version, auth, username, password, messagehook, eventshook, token, prefix, ownername } = config;
+const { host, port, version, auth, username, password, token } = config;
 
 console.log(colors.yellow("In order to use cracked accounts keep the password field in your config to blank"));
 console.log(colors.yellow("And if you're using an IP such as hypixel.net then keep port field blank"));
@@ -46,8 +46,8 @@ function initialize() {
   ScriptsLoad(bot);
 
   bot.on("end", (reason) => {
-    console.log(`[${new Date().toLocaleTimeString().gray}] ${`Disconnected`.red}`, colors.yellow(`Attempting to reconnect in 5 seconds ${reason}`));
-    setTimeout(() => initialize(), 5000);
+    console.log(`[${new Date().toLocaleTimeString().gray}] ${`Disconnected`.red}`, colors.yellow(`Attempting to reconnect in 10 seconds ${reason}`));
+    setTimeout(() => initialize(), 10000);
   });
 }
 
@@ -62,10 +62,10 @@ const client = new Client({
  * @type {String[]}
  */
 
-const eventFiles = fs.readdirSync("./src/events/discord").filter((file) => file.endsWith(".js"));
+const eventFiles = fs.readdirSync(path.join(__dirname, "events", "discord")).filter((file) => file.endsWith(".js"));
 
 for (const file of eventFiles) {
-  const event = require(`./events/discord/${file}`);
+  const event = require(path.join(__dirname, "events", "discord", file));
   if (event.once) {
     client.once(event.name, (...args) => event.execute(...args, client));
   } else {
@@ -85,12 +85,12 @@ client.triggers = new Collection();
  * @description All command categories aka folders.
  */
 
-const commandFolders = fs.readdirSync("./src/commands");
+const commandFolders = fs.readdirSync(path.join(__dirname, "commands"));
 
 for (const folder of commandFolders) {
-  const commandFiles = fs.readdirSync(`./src/commands/${folder}`).filter((file) => file.endsWith(".js"));
+  const commandFiles = fs.readdirSync(path.join(__dirname, "commands", folder)).filter((file) => file.endsWith(".js"));
   for (const file of commandFiles) {
-    const command = require(`./commands/${folder}/${file}`);
+    const command = require(path.join(__dirname, "commands", folder, file));
     client.commands.set(command.name, command);
   }
 }
