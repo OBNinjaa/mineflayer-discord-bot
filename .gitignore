@@ -1,2 +1,3 @@
 config.jsona
 node_modules/
+*.json
