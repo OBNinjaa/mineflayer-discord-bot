@@ -1,5 +1,5 @@
 const { REST, Routes } = require("discord.js");
-const { token } = require("./config.json");
+const { token, clientsID, serverID } = require("./config.json");
 const fs = require("node:fs");
 const path = require("node:path");
 const bot = require("./client");
@@ -19,11 +19,11 @@ const rest = new REST({ version: "10" }).setToken(token);
   try {
     console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
-    const data = await rest.put(Routes.applicationGuildCommands("817614688027410452", "883397209306038272"), { body: commands });
+    const data = await rest.put(Routes.applicationGuildCommands(clientsID, serverID), { body: commands });
 
     console.log(`Successfully reloaded ${data.length} application (/) commands.`);
     process.exit(0);
   } catch (error) {
-    console.error(error);
+    console.error(error.message);
   }
 })();
