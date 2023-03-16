@@ -2,6 +2,9 @@ const mineflayer = require("mineflayer");
 const colors = require("colors");
 const request = require("request");
 
+const options = require("../config.json");
+const { webhook } = options;
+
 /**
  * @param {mineflayer.Bot} bot
  */
@@ -13,7 +16,7 @@ module.exports = (bot) => {
     if (message.includes("http")) return;
     console.log(`[${new Date().toLocaleTimeString().gray}] [${username.brightBlue}] ${message.brightYellow}`);
 
-    var URL = "https://discord.com/api/webhooks/1003451750214283284/OiQjETezqCL4N7vMt4o4A4YqY73xLVHQFneML1RsJ8rxCTlxzPgPqqMCewR5pdyNcYY9";
+    var URL = `${webhook}`;
     request.post(URL, {
       json: {
         content: `${message}`,
