@@ -8,7 +8,7 @@ const { username, password, auth, host, port, version, viewDistance, hideErrors,
 
 const settings = {
   username: username,
-  password: password | "",
+  password: password || "",
   auth: auth,
   host: host,
   port: port,
@@ -46,7 +46,7 @@ function initialize() {
     setTimeout(() => {
       console.log(`[${new Date().toLocaleTimeString().bgBrightRed}]`, colors.brightRed(`Disconnected from server reconnecting...`));
       initialize();
-    }, 1000);
+    }, 15000);
   });
 }
 

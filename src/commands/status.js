@@ -14,7 +14,7 @@ module.exports = {
       .setColor(0xf58367)
       .setTitle(`**${bot.username}** Statistics`)
       .setThumbnail(head)
-      .setDescription(`Health: **${bot.health}**\nFood: **${bot.food}**\nXP: **${bot.experience.level}**`)
+      .setDescription(`Health: **${bot.health}**\nFood: **${bot.food}**\nXP: **${bot.experience.level || 0}**`)
       .setTimestamp();
 
     return interaction.reply({ embeds: [statusEmbed] });
