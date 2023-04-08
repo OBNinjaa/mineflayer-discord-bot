@@ -48,7 +48,7 @@ module.exports = {
           .setTitle("Pathfinding stopped")
           .setThumbnail(head)
           .setDescription(
-            `**${bot.username}** is currently stuck and can't reach it's path, This could be because the location is in the void which the bot can't reach or the bot is trying to scaffold which it can't do because it has no blocks.`
+            `**${bot.username}** is currently stuck and can't reach its path. This could be because the location is in the void which the bot can't reach, or the bot is trying to scaffold which it can't do because it has no blocks.`
           )
           .setTimestamp();
 

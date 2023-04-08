@@ -29,6 +29,7 @@ To register slash commands in your server, you will need to grant the necessary 
 3. In the "Scopes" section, select the "bot" scope.
 4. In the "Bot Permissions" section, select the "applications.commands" permission.
 5. Copy the generated invite URL and use it to invite your bot to the server where you want to register the slash commands.
+6. Run npm run dev to register commands to your discord server
 
 ![Scopes](https://imgur.com/Y0Mqsch.png)
 ![URL](https://imgur.com/rnPcwLX.png)
