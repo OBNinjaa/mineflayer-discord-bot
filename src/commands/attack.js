@@ -22,51 +22,36 @@ module.exports = {
 
     const cantFind = new EmbedBuilder()
       .setColor(0xf58367)
-      .setTitle(`Cant Find: ${value}`)
+      .setTitle(`Can't Find: ${value}`)
       .setThumbnail(head)
       .setDescription(`I am unable to find **${value}**\nMake sure they are near the bot`)
       .setTimestamp();
 
     if (!player) {
-      bot.pvp.forceStop();
+      bot.pvp.stop();
       return interaction.reply({ embeds: [cantFind] });
     } else {
       const attackEmbed = new EmbedBuilder()
         .setColor(0xf58367)
         .setTitle(`Attacking: ${value}`)
         .setThumbnail(head)
-        .setDescription(`You will be notified once the bot\n has finished attacking **${value}**`)
+        .setDescription(`You will be notified once the bot has finished attacking **${value}**`)
         .setTimestamp();
 
       const reply = await interaction.reply({ embeds: [attackEmbed] });
 
-      bot.once("message", (jsonMsg, position) => {
-        if (position !== "system") return;
+      bot.once("stoppedAttacking", () => {
+        const deathEmbed = new EmbedBuilder()
+          .setColor("#67f570")
+          .setTitle("Bot Attack Finished")
+          .setThumbnail(head)
+          .setDescription(`The bot has finished attacking **${value}**`)
+          .setTimestamp();
 
-        const message = jsonMsg.toString();
-        const deathMatch = /(.+) was slain by (.+)/.exec(message);
-
-        if (deathMatch) {
-          const victim = deathMatch[1];
-          const attacker = deathMatch[2];
-
-          console.log(`Victim: ${victim}`);
-          console.log(`Attacker: ${attacker}`);
-
-          const isBotVictim = victim === bot.username;
-
-          const deathEmbed = new EmbedBuilder()
-            .setColor(isBotVictim ? "#f56767" : "#67f570")
-            .setTitle(isBotVictim ? "You lost" : "You won")
-            .setThumbnail(head)
-            .setDescription(`**${victim}** was slain by **${attacker}**`)
-            .setTimestamp();
-
-          interaction.editReply({ embeds: [deathEmbed] });
-        }
+        interaction.editReply({ embeds: [deathEmbed] });
       });
-    }
 
-    bot.pvp.attack(player.entity);
+      bot.pvp.attack(player.entity);
+    }
   },
 };

@@ -9,8 +9,11 @@ module.exports = {
   async execute(interaction) {
     const value = interaction.options.getString("message");
 
-    if (value) return interaction.reply({ content: `Sent: ${value}` }) && bot.chat(value);
+    if (value && !value.startsWith("/")) {
+      bot.chat(value);
+      return interaction.reply({ content: `Sent: ${value}` });
+    }
 
-    return interaction.reply("You did not input a message to send!");
+    return interaction.reply("You did not input a valid message to send!");
   },
 };
