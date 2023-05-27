@@ -1,4 +1,2 @@
-config.jsona
 node_modules/
 *.json
-src/config.json
