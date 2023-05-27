@@ -1,0 +1,15 @@
+{
+  "token": "MTAzMzUxNzU4Mjg2NDYyMTU5OA.GSUDdJ.V3fhAVoHVCYIXSx5oytbGd_kOkQiQL7xwvZ4hM",
+  "webhook": "https://ptb.discord.com/api/webhooks/ID/TOKEN",
+  "username": "OBNinjaa",
+  "password": "",
+  "auth": "offline",
+  "host": "sus.shhnowisnottheti.me",
+  "port": 25565,
+  "version": "1.19.2",
+  "viewDistance": "tiny",
+  "hideErrors": true,
+  "logErrors": false,
+  "clientsID": "817614688027410452",
+  "serverID": "883397209306038272"
+}
