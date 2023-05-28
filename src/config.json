@@ -1,6 +1,7 @@
 {
   "token": "MTAzMzUxNzU4Mjg2NDYyMTU5OA.GSUDdJ.V3fhAVoHVCYIXSx5oytbGd_kOkQiQL7xwvZ4hM",
   "webhook": "https://ptb.discord.com/api/webhooks/ID/TOKEN",
+  "eventshook": "https://ptb.discord.com/api/webhooks/ID/TOKEN",
   "username": "OBNinjaa",
   "password": "",
   "auth": "offline",
