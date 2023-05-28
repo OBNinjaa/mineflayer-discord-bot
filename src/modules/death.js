@@ -6,6 +6,9 @@ const request = require("request");
  * @param {mineflayer.Bot} bot
  */
 
+const options = require("../config.json");
+const { eventshook } = options;
+
 module.exports = (bot) => {
   const deathMessages = [
     {
@@ -41,8 +44,7 @@ module.exports = (bot) => {
 
       console.log(deathMatch.logMessage(victim, attacker));
 
-      const URL = "https://discord.com/api/webhooks/1003451750214283284/OiQjETezqCL4N7vMt4o4A4YqY73xLVHQFneML1RsJ8rxCTlxzPgPqqMCewR5pdyNcYY9";
-      request.post(URL, {
+      request.post(eventshook, {
         json: {
           content: deathMatch.discordMessage(victim, attacker),
           //   avatar_url: `https://mc-heads.net/head/${victim}`,
