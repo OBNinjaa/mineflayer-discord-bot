@@ -39,7 +39,7 @@ echo Registering commands to your Discord server
 npm run dev &
 echo Registering commands to your Discord server
 npm run dev
-echo You can now launch the bot by double starting start_bot.bat
+echo You can now launch the bot by starting start_bot.bat
 (
   echo @echo off
   echo node src/client.js
