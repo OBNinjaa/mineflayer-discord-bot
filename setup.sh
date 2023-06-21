@@ -2,12 +2,6 @@
 clear
 
 
-out() {
-	# Print a message
-	printf '%b\n' "$@"
-}
-
-
 read -p "Enter your Discord token:" TOKEN
 read -p "Enter your Discord chat logs webhook URL:" WEBHOOK
 read -p "Enter your Discord events webhook URL (Death events etc):" EVENTSHOOK
