@@ -15,7 +15,7 @@
   "viewDistance": "tiny",
   "hideErrors": true,
   "logErrors": false,
-  "clientsID": "817614688027410452",
+  "clientID": "817614688027410452",
   "serverID": "883397209306038272"
 }
 ```

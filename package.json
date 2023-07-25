@@ -5,8 +5,8 @@
   "main": "src/client.js",
   "author": "OBNinjaa",
   "scripts": {
-    "dev": "node src/register.js",
-    "del": "node src/delete.js"
+    "register": "node src/register.js",
+    "delete": "node src/delete.js"
   },
   "license": "ISC",
   "dependencies": {

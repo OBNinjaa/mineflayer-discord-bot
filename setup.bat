@@ -29,7 +29,7 @@ set /p SERVERID=Enter your Discord server ID:
   echo   "viewDistance": "%VIEWDISTANCE%",
   echo   "hideErrors": %HIDEERRORS%,
   echo   "logErrors": %LOGERRORS%,
-  echo   "clientsID": "%CLIENTID%",
+  echo   "clientID": "%CLIENTID%",
   echo   "serverID": "%SERVERID%"
   echo }
 ) > src/config.json
