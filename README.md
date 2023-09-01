@@ -4,19 +4,14 @@
 
 ```json
 {
-  "token": "MTAzMzUxNzU4Mjg2NDYyMTU5OA.GSUDdJ.V3fhAVoHVCYIXSx5oytbGd_kOkQiQL7xwvZ4hM",
-  "webhook": "https://ptb.discord.com/api/webhooks/1085971359756206131/XygnwBaT5LX2J_5qvxkN0ZnbwQKCNCqV11JIwxoCaaTmLF2jxhEjN_Fg4O55rt64mxNB",
+  "token": "MTE0Njg3MjEwMjk0Mzc0MDA2Ng.GrXYfb.PHG0dPDci72e80GXecW9r4sM0PXUk-RsAWvD-s",
+  "clientID": "1146872102943740066",
+  "messages": "https://discord.com/api/webhooks/1147156671131562024/tz65Nl0pT_iLpmwvLsXe1ixwruT-7Zg3nvY_SUqqg9I5Cm5nnPlpDb9vwsLWvOUvLj90",
+  "events": "https://discord.com/api/webhooks/1147156706544078910/AZaEf-hyQ9ydFy43-6ElTElLoIMcR8r33DvzuMsqzC1hj9pFZqSifn358h0QkCfmJ_tY",
   "username": "OBNinjaa",
-  "password": "",
-  "auth": "offline",
-  "host": "sus.shhnowisnottheti.me",
+  "address": "hypixel.net",
   "port": 25565,
-  "version": "1.19.2",
-  "viewDistance": "tiny",
-  "hideErrors": true,
-  "logErrors": false,
-  "clientID": "817614688027410452",
-  "serverID": "883397209306038272"
+  "auth": "microsoft"
 }
 ```
 
