@@ -1,53 +1,52 @@
 const mineflayer = require("mineflayer");
-const fs = require("fs");
-const path = require("path");
-const colors = require("colors");
+const fs = require("node:fs");
+const path = require("node:path");
 
-const options = require("./config.json");
-const { username, password, auth, host, port, version, viewDistance, hideErrors, logErrors } = options;
+const pathfinder = require("mineflayer-pathfinder").pathfinder;
+const collectBlock = require("mineflayer-collectblock").plugin;
+const pvp = require("mineflayer-pvp").plugin;
 
-const settings = {
-  username: username,
-  password: password || "",
-  auth: auth,
-  host: host,
-  port: port,
-  version: version,
-  viewDistance: viewDistance,
-  hideErrors: hideErrors,
-  logErrors: logErrors,
-};
+const { username, address, port, auth } = require("./settings.json");
 
-function injectModules(bot) {
-  const MODULES_DIRECTORY = path.join(__dirname, "modules");
-  const modules = fs
-    .readdirSync(MODULES_DIRECTORY)
-    .filter((x) => x.endsWith(".js"))
-    .map((pluginName) => require(path.join(MODULES_DIRECTORY, pluginName)));
+function createBot() {
+  function injectModules(bot) {
+    const MODULES_DIRECTORY = path.join(__dirname, "modules");
+    const modules = fs
+      .readdirSync(MODULES_DIRECTORY)
+      .filter((x) => x.endsWith(".js"))
+      .map((pluginName) => require(path.join(MODULES_DIRECTORY, pluginName)));
 
-  bot.loadPlugins(modules);
-}
+    console.log(`Loaded \x1b[32m${modules.length}\x1b[0m bot modules`);
 
-function initialize() {
-  const bot = mineflayer.createBot(settings);
+    bot.loadPlugins(modules);
+  }
+
+  const bot = mineflayer.createBot({
+    username: username,
+    auth: auth,
+    host: address,
+    port: port,
+    logErrors: false,
+    hideErrors: true,
+    physicsEnabled: true,
+  });
+
   injectModules(bot);
-  module.exports = bot;
 
-  bot.once("spawn", function () {
-    console.log(`[${new Date().toLocaleTimeString().gray}]`, colors.brightYellow(`minecraft bot ready: ${bot.username.green}`));
+  bot.loadPlugin(collectBlock);
+  bot.loadPlugin(pathfinder);
+  bot.loadPlugin(pvp);
+
+  bot.on("end", () => {
+    console.log("\x1b[31mThe bot has ended. Reconnecting... \x1b[0m");
+    setTimeout(createBot, 5000);
   });
 
   bot.on("error", (err) => {
-    console.clear();
-    console.log(`[${new Date().toLocaleTimeString().bgBrightRed}]`, colors.brightRed(err));
+    console.error(err.message);
   });
 
-  bot.on("end", () => {
-    setTimeout(() => {
-      console.log(`[${new Date().toLocaleTimeString().bgBrightRed}]`, colors.brightRed(`Disconnected from server reconnecting...`));
-      initialize();
-    }, 15000);
-  });
+  return bot;
 }
 
-initialize();
+module.exports = createBot;

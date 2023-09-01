@@ -1,44 +1,55 @@
 @echo off
 
-set /p TOKEN=Enter your Discord token: 
-set /p WEBHOOK=Enter your Discord chat logs webhook URL: 
-set /p EVENTSHOOK=Enter your Discord events webhook URL (Death events etc): 
-set /p USERNAME=Enter your Minecraft email or username: 
-set /p PASSWORD=Enter your Minecraft password leave blank for cracked: 
-set /p AUTH=Enter your Minecraft authentication type: 
-set /p HOST=Enter the Minecraft server host: 
-set /p PORT=Enter the Minecraft server port: 
-set /p VERSION=Enter the Minecraft version: 
-set /p VIEWDISTANCE=Enter the Minecraft view distance (far, normal, short or tiny): 
-set /p HIDEERRORS=Enter "true" to hide errors or "false" to show errors: 
-set /p LOGERRORS=Enter "true" to log errors or "false" to not log errors: 
-set /p CLIENTID=Enter your Discord client ID: 
-set /p SERVERID=Enter your Discord server ID: 
+echo Make sure your Discord bot has the correct scopes before continuing
+echo.
+echo Enter the Discord bot token.
+set /p token=Token: 
+cls
+
+echo Enter the Discord bots ID
+set /p clientID=Client ID: 
+cls
+
+echo Enter the messages webhook https://discord.com/api/webhooks/XXXX/XXXX
+set /p messages=Messages: 
+cls
+
+echo Enter the events webhook https://discord.com/api/webhooks/XXXX/XXXX
+set /p events=Events: 
+cls
+
+echo Enter the bots username
+set /p username=Username: 
+cls
+
+echo Enter the server IP
+set /p address=Address: 
+cls
+
+echo Enter the server PORT
+set /p port=Port: 
+cls
+
+echo Enter either microsoft or offline
+set /p auth=Auth: 
+cls
 
 (
   echo {
-  echo   "token": "%TOKEN%",
-  echo   "webhook": "%WEBHOOK%",
-  echo   "eventshook": "%EVENTSHOOK%",
-  echo   "username": "%USERNAME%",
-  echo   "password": "%PASSWORD%",
-  echo   "auth": "%AUTH%",
-  echo   "host": "%HOST%",
-  echo   "port": %PORT%,
-  echo   "version": "%VERSION%",
-  echo   "viewDistance": "%VIEWDISTANCE%",
-  echo   "hideErrors": %HIDEERRORS%,
-  echo   "logErrors": %LOGERRORS%,
-  echo   "clientID": "%CLIENTID%",
-  echo   "serverID": "%SERVERID%"
+  echo   "token": "%token%",
+  echo   "clientID": "%clientID%",
+  echo   "messages": "%messages%",
+  echo   "events": "%events%",
+  echo   "username": "%username%",
+  echo   "address": "%address%",
+  echo   "port": "%port%",
+  echo   "auth": "%auth%"
   echo }
-) > src/config.json
+) > src/settings.json
 
-echo Configuration saved to config.json.
-echo Registering commands to your Discord server
-npm run dev
-echo You can now launch the bot by starting start_bot.bat
-(
-  echo @echo off
-  echo node src/client.js
-) > start_bot.bat
+cls
+echo Saved settings to settings.json
+echo You can now install the bot's dependencies by entering "npm install".
+echo Make sure to enter "npm run register" in order to register commands to your Discord bot.
+
+cmd /k

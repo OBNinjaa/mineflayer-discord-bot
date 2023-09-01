@@ -1,56 +1,56 @@
-#!/bin/sh
+#!/bin/bash
+
+echo "Make sure your Discord bot has the correct scopes before continuing"
+echo
+
+echo -n "Enter the Discord bot token: "
+read -r token
 clear
 
+echo -n "Enter the Discord bot's ID: "
+read -r clientID
+clear
 
-read -p "Enter your Discord token:" TOKEN
-read -p "Enter your Discord chat logs webhook URL:" WEBHOOK
-read -p "Enter your Discord events webhook URL (Death events etc):" EVENTSHOOK
-read -p "Enter your Minecraft email or username:" USERNAME
-read -p "Enter your Minecraft password leave blank for cracked:" PASSWORD
-read -p "Enter your Minecraft authentication type:" AUTH
-read -p "Enter the Minecraft server host:" HOST
-read -p "Enter the Minecraft server port:" PORT
-read -p "Enter the Minecraft version:" VERSION
-read -p "Enter the Minecraft view distance (far, normal, short or tiny):" VIEWDISTANCE
-read -p "Enter \"true\" to hide errors or \"false\" to show errors:" HIDEERRORS
-read -p "Enter \"true\" to log errors or \"false\" to not log errors:" LOGERRORS
-read -p "Enter your Discord client ID:" CLIENTID
-read -p "Enter your Discord server ID:" SERVERID
+echo -n "Enter the messages webhook https://discord.com/api/webhooks/XXXX/XXXX: "
+read -r messages
+clear
 
-(
-  echo {
-  echo   \"token\": \"$TOKEN\",
-  echo   \"webhook\": \"$WEBHOOK\",
-  echo   \"eventshook\": \"$EVENTSHOOK\",
-  echo   \"username\": \"$USERNAME\",
-  echo   \"password\": \"$PASSWORD\",
-  echo   \"auth\": \"$AUTH\",
-  echo   \"host\": \"$HOST\",
-  echo   \"port\": $PORT,
-  echo   \"version\": \"$VERSION\",
-  echo   \"viewDistance\": \"$VIEWDISTANCE\",
-  echo   \"hideErrors\": $HIDEERRORS,
-  echo   \"logErrors\": $LOGERRORS,
-  echo   \"clientID\": \"$CLIENTID\",
-  echo   \"serverID\": \"$SERVERID\"
-  echo }
-) > src/config.json
+echo -n "Enter the events webhook https://discord.com/api/webhooks/XXXX/XXXX: "
+read -r events
+clear
 
+echo -n "Enter the bot's username: "
+read -r username
+clear
 
-echo Configuration saved to config.json.
-echo Installing Node Modules.
-npm i > /dev/null 
-echo Installation Done.
+echo -n "Enter the server IP: "
+read -r address
+clear
 
-echo Registering commands to your Discord server
-npm run dev
+echo -n "Enter the server PORT: "
+read -r port
+clear
 
-echo You can now launch the bot by starting start_bot.sh
+echo -n "Enter either microsoft or offline: "
+read -r auth
+clear
 
 (
-  echo clear
-  echo node src/client.js
-) > start_bot.sh
+  echo '{
+    "token": "'"$token"'",
+    "clientID": "'"$clientID"'",
+    "messages": "'"$messages"'",
+    "events": "'"$events"'",
+    "username": "'"$username"'",
+    "address": "'"$address"'",
+    "port": "'"$port"'",
+    "auth": "'"$auth"'"
+  }'
+) > src/settings.json
 
-chmod +x start_bot.sh
+clear
+echo "Saved settings to settings.json"
+echo "You can now install the bot's dependencies by entering \"npm install\""
+echo "Make sure to enter \"npm run register\" in order to register commands to your Discord bot."
 
+exec bash

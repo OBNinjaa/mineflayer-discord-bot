@@ -1,55 +1,46 @@
 const mineflayer = require("mineflayer");
-const colors = require("colors");
 const request = require("request");
+const path = require("path");
+const fs = require("fs");
+
+const { events } = require("../settings.json");
 
 /**
  * @param {mineflayer.Bot} bot
  */
 
-const options = require("../config.json");
-const { eventshook } = options;
-
 module.exports = (bot) => {
-  const deathMessages = [
-    {
-      regex: /(.+) was slain by (.+)/,
-      logMessage: (victim, attacker) =>
-        `[${new Date().toLocaleTimeString().gray}] ${victim.brightRed.bold} ${"was slain by".brightYellow} ${attacker.brightRed.bold}`,
-      discordMessage: (victim, attacker) => `${victim} was slain by ${attacker}`,
-    },
-    {
-      regex: /(.+) was shot by (.+)/,
-      logMessage: (victim, attacker) =>
-        `[${new Date().toLocaleTimeString().gray}] ${victim.brightRed.bold} ${"was shot by".brightYellow} ${attacker.brightRed.bold}`,
-      discordMessage: (victim, attacker) => `${victim} was shot by ${attacker}`,
-    },
-    {
-      regex: /(.+) was squashed by a falling anvil( whilst fighting (.+))?/,
-      logMessage: (victim, _, attacker) =>
-        `[${new Date().toLocaleTimeString().gray}] ${victim.brightRed.bold} ${"was squashed by a falling anvil".brightYellow} ${
-          attacker ? "whilst fighting".brightYellow + " " + attacker.brightRed.bold : ""
-        }`,
-      discordMessage: (victim, _, attacker) => `${victim} was squashed by a falling anvil${attacker ? " whilst fighting " + attacker : ""}`,
-    },
-  ];
-
   bot.on("message", (jsonMsg, position) => {
     if (position !== "system") return;
 
     const message = jsonMsg.toString();
-    const deathMatch = deathMessages.find(({ regex }) => regex.test(message));
+    const deaths = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "deaths.json"), "utf8"));
 
-    if (deathMatch) {
-      const [, victim, attacker] = deathMatch.regex.exec(message);
+    function checkDeathMatch(deathMessage, deathPatterns) {
+      if (!Array.isArray(deathPatterns)) {
+        deathPatterns = [deathPatterns];
+      }
 
-      console.log(deathMatch.logMessage(victim, attacker));
-
-      request.post(eventshook, {
-        json: {
-          content: deathMatch.discordMessage(victim, attacker),
-          //   avatar_url: `https://mc-heads.net/head/${victim}`,
-        },
-      });
+      for (const pattern of deathPatterns) {
+        const regex = new RegExp(pattern.replace("P1", "(\\w+)").replace("P2", "(\\w+)").replace("P3", "(\\w+)"));
+        if (regex.test(deathMessage)) {
+          console.log("\x1b[33m%s\x1b[0m", deathMessage);
+          const username = deathMessage[0].toUpperCase() + deathMessage.substring(1).split(" ")[0];
+          try {
+            request.post(events, {
+              json: {
+                username: username,
+                content: `${deathMessage}`,
+              },
+            });
+          } catch (error) {
+            console.log("\x1b[31mUnable to send webhook to Discord\x1b[0m");
+            console.log("\x1b[31mMake sure you have a valid webhook in your config \x1b[0m");
+          }
+        }
+      }
     }
+
+    checkDeathMatch(message, deaths);
   });
 };

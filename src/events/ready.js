@@ -1,16 +1,10 @@
-const { Events } = require("discord.js");
-const colors = require("colors");
-const bot = require("../bot");
+const { Events, ActivityType } = require("discord.js");
 
 module.exports = {
   name: Events.ClientReady,
   once: true,
   execute(client) {
-    console.log(`[${new Date().toLocaleTimeString().gray}]`, colors.brightYellow(`discord bot ready: ${client.user.tag.brightGreen}`));
-
-    client.user.setPresence({
-      activities: [{ name: `Minecraft`, type: 1 }],
-      status: "online",
-    });
+    console.log(`Discord bot ready \x1b[32m${client.user.username}\x1b[0m`);
+    client.user.setActivity("Minecraft", { type: ActivityType.Playing });
   },
 };
