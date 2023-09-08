@@ -7,7 +7,7 @@ const { GoalNear } = require("mineflayer-pathfinder").goals;
  */
 module.exports = (bot) => {
   bot.on("chat", (username, message) => {
-    if (message === "come" || message === "follow") {
+    if (message === "$come" || message === "$follow") {
       const player = bot.players[username];
 
       if (player && player.entity) {

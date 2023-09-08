@@ -24,7 +24,9 @@ module.exports = {
         { name: "Server", value: `\`${bot._client.socket._host}\``, inline: false },
         { name: "Version", value: `\`${bot.version}\``, inline: false },
         { name: "levelType", value: `\`${bot.game.levelType}\``, inline: false },
-        { name: "dimension", value: `\`${bot.game.dimension}\``, inline: false }
+        { name: "dimension", value: `\`${bot.game.dimension}\``, inline: false },
+        { name: "Guard Status", value: `\`${bot.status.isGuarding ? "True" : "False"}\``, inline: false },
+        { name: "Auto Totem", value: `\`${bot.status.isTotem ? "True" : "False"}\``, inline: false }
       );
 
     await interaction.reply({ embeds: [informationEmbed] });

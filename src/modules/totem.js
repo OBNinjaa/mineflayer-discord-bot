@@ -5,15 +5,21 @@ const mineflayer = require("mineflayer");
  */
 
 module.exports = (bot) => {
-  bot.on("physicsTick", () => {
-    const totem = bot.inventory.items().find((item) => item.name === "totem_of_undying");
-    if (!totem) {
-      return;
+  bot.on("chat", (username, message) => {
+    if (message === "$totem") {
+      bot.status.isTotem = true;
+      bot.on("physicsTick", () => {
+        const totem = bot.inventory.items().find((item) => item.name === "totem_of_undying");
+        if (!totem) {
+          return;
+        }
+        const offHandSlot = bot.inventory.slots[45];
+        if (offHandSlot && offHandSlot.name === "totem_of_undying") {
+          return;
+        }
+
+        bot.equip(totem, "off-hand");
+      });
     }
-    const offHandSlot = bot.inventory.slots[45];
-    if (offHandSlot && offHandSlot.name === "totem_of_undying") {
-      return;
-    }
-    bot.equip(totem, "off-hand");
   });
 };

@@ -31,6 +31,11 @@ function createBot() {
     physicsEnabled: true,
   });
 
+  bot.status = {
+    isGuarding: false,
+    isTotem: false,
+  };
+
   injectModules(bot);
 
   bot.loadPlugin(collectBlock);
