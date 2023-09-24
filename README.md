@@ -2,6 +2,8 @@
 
 ## Example Config
 
+- src/settings.json
+
 ```json
 {
   "token": "MTE0Njg3MjEwMjk0Mzc0MDA2Ng.GrXYfb.PHG0dPDci72e80GXecW9r4sM0PXUk-RsAWvD-s",
@@ -13,6 +15,14 @@
   "port": 25565,
   "auth": "microsoft",
   "showCoordinates": false
+}
+```
+
+- src/data/homes.json
+
+```json
+{
+  "homes": {}
 }
 ```
 
