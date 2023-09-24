@@ -90,7 +90,7 @@ module.exports = (bot) => {
         const block = bot.blockAt(new Vec3(x, centerY, z));
         if (block.name !== "air") {
           console.log(`Block at (${x}, ${centerY}, ${z}): ${block.name}`);
-          bot.chat(`/fill ${x} ${centerY} ${z} ${x} ${centerY} ${z} grass_block`);
+          bot.chat(`/fill ${x} ${centerY} ${z} ${x} ${centerY} ${z} orange_wool`);
         }
       }
     }

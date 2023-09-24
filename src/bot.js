@@ -6,7 +6,7 @@ const pathfinder = require("mineflayer-pathfinder").pathfinder;
 const collectBlock = require("mineflayer-collectblock").plugin;
 const pvp = require("mineflayer-pvp").plugin;
 
-const { username, address, port, auth } = require("./settings.json");
+const { username, address, port, version, auth, showCoordinates } = require("./settings.json");
 
 function createBot() {
   function injectModules(bot) {
@@ -26,6 +26,7 @@ function createBot() {
     auth: auth,
     host: address,
     port: port,
+    version: version,
     logErrors: false,
     hideErrors: true,
     physicsEnabled: true,
@@ -34,6 +35,7 @@ function createBot() {
   bot.status = {
     isGuarding: false,
     isTotem: false,
+    showCoordinates: showCoordinates,
   };
 
   injectModules(bot);

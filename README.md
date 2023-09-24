@@ -11,7 +11,8 @@
   "username": "OBNinjaa",
   "address": "hypixel.net",
   "port": 25565,
-  "auth": "microsoft"
+  "auth": "microsoft",
+  "showCoordinates": false
 }
 ```
 

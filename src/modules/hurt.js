@@ -22,6 +22,7 @@ module.exports = (bot) => {
     if (lastAttacker && bot.health < lastHealth) {
       const playerEntity = bot.players[lastAttacker]?.entity;
       if (playerEntity) {
+        bot.chat(`${lastAttacker} hurt me!`);
         bot.pvp.attack(playerEntity);
       }
     }

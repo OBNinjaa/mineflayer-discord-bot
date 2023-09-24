@@ -15,7 +15,7 @@ module.exports = {
       .setTitle(`${bot.username}'s Information`)
       .addFields(
         { name: "Player UUID", value: `\`${bot.player.uuid}\``, inline: false },
-        { name: "Position", value: `\`${roundedPosition.x}, ${roundedPosition.y}, ${roundedPosition.z}\``, inline: false },
+        { name: "Position", value: `\`${bot.status.showCoordinates ? `${roundedPosition.x}, ${roundedPosition.y}, ${roundedPosition.z}` : "Disabled"}\``, inline: false },
         { name: "Username", value: `\`${bot.username}\``, inline: false },
         { name: "Health", value: `\`${bot.health}/20\``, inline: false },
         { name: "Food", value: `\`${bot.food}/20\``, inline: false },
