@@ -34,6 +34,10 @@ echo Enter either microsoft or offline
 set /p auth=Auth: 
 cls
 
+echo Hide coordinates? true or false
+set /p showCoordinates=Show coordinates: 
+cls
+
 (
   echo {
   echo   "token": "%token%",
@@ -43,7 +47,8 @@ cls
   echo   "username": "%username%",
   echo   "address": "%address%",
   echo   "port": "%port%",
-  echo   "auth": "%auth%"
+  echo   "auth": "%auth%",
+  echo   "showCoordinates": %showCoordinates%
   echo }
 ) > src/settings.json
 

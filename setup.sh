@@ -35,6 +35,10 @@ echo -n "Enter either microsoft or offline: "
 read -r auth
 clear
 
+echo -n "Hide coordinates? true or false: "
+read -r showCoordinates
+clear
+
 (
   echo '{
     "token": "'"$token"'",
@@ -44,7 +48,8 @@ clear
     "username": "'"$username"'",
     "address": "'"$address"'",
     "port": "'"$port"'",
-    "auth": "'"$auth"'"
+    "auth": "'"$auth"'",
+    "showCoordinates": "'"$showCoordinates"'"
   }'
 ) > src/settings.json
 
