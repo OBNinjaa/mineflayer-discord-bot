@@ -18,21 +18,24 @@ module.exports = (bot) => {
           let table = await bot.openEnchantmentTable(block);
           await table.putLapis(table.findInventoryItem("lapis_lazuli"));
           await table.putTargetItem(table.findInventoryItem("diamond_sword"));
-          table.once("ready", async () => {
+          const readyHandler = async () => {
             try {
               table.enchant(2);
               table.takeTargetItem();
 
-              const chestPos = new Vec3(15, -60, -193);
+              const chestPos = new Vec3(235, 64, 198);
               const chest = await bot.openContainer(bot.blockAt(chestPos));
-              await chest.deposit(797, 0, 1);
+              await chest.deposit(bot.registry.itemsByName["diamond_sword"].id, 0, 1);
               chest.close();
               bot.chat("Enchanted & deposited into chest!");
+
+              table.removeListener("ready", readyHandler);
             } catch (error) {
               bot.chat("An error occurred while enchanting and depositing into the chest.");
-              console.error(error);
             }
-          });
+          };
+
+          table.once("ready", readyHandler);
         } else {
           bot.chat("Could not find an enchanting table.");
         }

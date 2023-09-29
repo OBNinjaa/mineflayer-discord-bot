@@ -18,10 +18,10 @@ module.exports = (bot) => {
 
     if (command === "$gethome" && args.length === 2) {
       const homeName = args[1];
-      const address = bot._client.socket._host.toLowerCase();
+      const address = bot._client.socket._host ? null : bot._client.socket.remoteAddress;
 
       const filePath = path.join(__dirname, "..", "data", "homes.json");
-      const homesData = JSON.parse(fs.readFileSync(filePath, "utf8")).homes[address.toLowerCase()];
+      const homesData = JSON.parse(fs.readFileSync(filePath, "utf8")).homes[address];
 
       if (homesData && homesData[homeName]) {
         const homeData = homesData[homeName];
@@ -37,10 +37,10 @@ module.exports = (bot) => {
         bot.chat(`Home "${homeName}" not found on this server.`);
       }
     } else if (command === "$listhomes") {
-      const address = bot._client.socket._host.toLowerCase();
+      const address = bot._client.socket._host ? null : bot._client.socket.remoteAddress;
 
       const filePath = path.join(__dirname, "..", "data", "homes.json");
-      const homesData = JSON.parse(fs.readFileSync(filePath, "utf8")).homes[address.toLowerCase()];
+      const homesData = JSON.parse(fs.readFileSync(filePath, "utf8")).homes[address];
 
       if (homesData) {
         const homeNames = Object.keys(homesData);
@@ -50,10 +50,10 @@ module.exports = (bot) => {
       }
     } else if (command === "$gohome" && args.length === 2) {
       const homeName = args[1];
-      const address = bot._client.socket._host.toLowerCase();
+      const address = bot._client.socket._host ? null : bot._client.socket.remoteAddress;
 
       const filePath = path.join(__dirname, "..", "data", "homes.json");
-      const homesData = JSON.parse(fs.readFileSync(filePath, "utf8")).homes[address.toLowerCase()];
+      const homesData = JSON.parse(fs.readFileSync(filePath, "utf8")).homes[address];
 
       if (homesData && homesData[homeName]) {
         const homeData = homesData[homeName];

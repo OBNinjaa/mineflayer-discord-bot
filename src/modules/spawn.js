@@ -8,7 +8,7 @@ const { events } = require("../settings.json");
 
 module.exports = (bot) => {
   bot.once("spawn", () => {
-    console.log(`Logged in to \x1b[34m${bot._client.socket._host}\x1b[0m as \x1b[32m${bot.username}\x1b[0m`);
+    console.log(`Logged in to \x1b[34m${bot._client.socket._host ? null : bot._client.socket.remoteAddress}\x1b[0m as \x1b[32m${bot.username}\x1b[0m`);
     bot.on("playerJoined", (player) => {
       console.log(`\x1b[33m${player.username} joined the game\x1b[0m`);
       try {

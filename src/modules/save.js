@@ -19,7 +19,7 @@ module.exports = (bot) => {
     const blacklist = args.slice(5);
 
     if (command === "$sethome" && homeName && !isNaN(x) && !isNaN(y) && !isNaN(z)) {
-      const address = bot._client.socket._host.toLowerCase();
+      const address = bot._client.socket._host ? null : bot._client.socket.remoteAddress;
 
       let homes = {};
       const jsonFilePath = path.join(__dirname, "..", "data", "homes.json");
@@ -59,7 +59,7 @@ module.exports = (bot) => {
             console.error(writeErr);
             bot.chat("Failed to save the home to the JSON file.");
           } else {
-            bot.chat(`Home "${homeName}" saved at x:${x}, y:${y}, z:${z}`);
+            bot.chat(`Home "${homeName}" saved at x: ${x}, y: ${y}, z: ${z}`);
             // getRadius(bot, x, y, z);
           }
         });

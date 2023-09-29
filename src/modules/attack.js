@@ -56,6 +56,7 @@ module.exports = (bot) => {
       }
     } else if (message === "$unprotect" || message === "$unguard") {
       if (bot.status.isGuarding) {
+        bot.pvp.stop();
         bot.status.isGuarding = false;
         bot.chat(`Guard Status ${bot.status.isGuarding ? "Enabled" : "Disabled"}`);
         bot.off("entityMoved", processEntityMoved);
