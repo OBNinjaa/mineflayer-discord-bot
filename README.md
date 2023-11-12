@@ -13,6 +13,7 @@
   "username": "OBNinjaa",
   "address": "hypixel.net",
   "port": 25565,
+  "version": "1.20",
   "auth": "microsoft",
   "showCoordinates": false
 }

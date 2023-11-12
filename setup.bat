@@ -30,6 +30,10 @@ echo Enter the server PORT
 set /p port=Port: 
 cls
 
+echo Enter the server VERSION
+set /p version=Version: 
+cls
+
 echo Enter either microsoft or offline
 set /p auth=Auth: 
 cls
@@ -47,6 +51,7 @@ cls
   echo   "username": "%username%",
   echo   "address": "%address%",
   echo   "port": "%port%",
+  echo   "version": "%version%"
   echo   "auth": "%auth%",
   echo   "showCoordinates": %showCoordinates%
   echo }

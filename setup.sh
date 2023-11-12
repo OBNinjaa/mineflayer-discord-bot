@@ -31,6 +31,10 @@ echo -n "Enter the server PORT: "
 read -r port
 clear
 
+echo -n "Enter the server VERSION: "
+read -r version
+clear
+
 echo -n "Enter either microsoft or offline: "
 read -r auth
 clear
@@ -48,6 +52,7 @@ clear
     "username": "'"$username"'",
     "address": "'"$address"'",
     "port": "'"$port"'",
+    "version": "'"$version"'",
     "auth": "'"$auth"'",
     "showCoordinates": "'"$showCoordinates"'"
   }'
