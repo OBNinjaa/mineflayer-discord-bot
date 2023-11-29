@@ -19,6 +19,7 @@ module.exports = (bot) => {
   });
 
   bot.on("health", () => {
+    if (bot.entity.position.y < -60) return;
     if (lastAttacker && bot.health < lastHealth) {
       const playerEntity = bot.players[lastAttacker]?.entity;
       if (playerEntity) {
