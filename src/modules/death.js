@@ -31,6 +31,7 @@ module.exports = (bot) => {
               json: {
                 username: username,
                 content: `${deathMessage}`,
+                avatar_url: `https://mc-heads.net/head/${username}`,
               },
             });
           } catch (error) {
