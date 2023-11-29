@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+const { SlashCommandBuilder } = require("discord.js");
 const { Embed } = require("../../classes/Embed");
 
 const { pathfinder, Movements, goals } = require("mineflayer-pathfinder");
