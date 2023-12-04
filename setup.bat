@@ -51,7 +51,7 @@ cls
   echo   "username": "%username%",
   echo   "address": "%address%",
   echo   "port": "%port%",
-  echo   "version": "%version%"
+  echo   "version": "%version%",
   echo   "auth": "%auth%",
   echo   "showCoordinates": %showCoordinates%
   echo }
