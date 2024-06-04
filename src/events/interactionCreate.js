@@ -23,11 +23,12 @@ module.exports = {
 
     const now = Date.now();
     const timestamps = cooldowns.get(command.data.name);
-    const defaultCooldownDuration = 3;
+    const defaultCooldownDuration = 5;
     const cooldownAmount = (command.cooldown ?? defaultCooldownDuration) * 1000;
 
     if (timestamps.has(interaction.user.id)) {
-      const expirationTime = timestamps.get(interaction.user.id) + cooldownAmount;
+      const expirationTime =
+        timestamps.get(interaction.user.id) + cooldownAmount;
 
       if (now < expirationTime) {
         const expiredTimestamp = Math.round(expirationTime / 1000);
@@ -44,8 +45,9 @@ module.exports = {
     try {
       await command.execute(interaction, bot);
     } catch (error) {
-      console.log(`Error executing ${interaction.commandName}`);
-      console.log(error);
+      console.log(
+        `\x1b[38;5;208m${"\x1b[33m" + `Error: ${error}` + "\x1b[0m"}`
+      );
     }
   },
 };

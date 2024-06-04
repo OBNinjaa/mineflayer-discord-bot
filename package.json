@@ -1,32 +1,35 @@
 {
   "name": "mineflayer-discord-bot",
   "version": "1.0.0",
-  "description": "control your mineflayer bot through a Discord bot",
+  "description": "A custom minecraft bot created using mineflayer which you can control using a discord bot",
   "main": "src/main.js",
   "scripts": {
-    "start": "node src/main.js",
-    "register": "node src/register.js"
+    "register": "node src/register.js",
+    "start": "node src/main.js"
   },
   "repository": {
     "type": "git",
-    "url": "git"
+    "url": "https://github.com/OBNinjaa/mineflayer-discord-bot.git"
   },
   "keywords": [
-    "mineflayer",
+    "minecraft",
     "discord.js",
-    "minecraft"
+    "mineflayer"
   ],
   "author": "OBNinjaa",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^14.12.1",
+    "@discord/embedded-app-sdk": "^1.2.0",
+    "axios": "^1.6.8",
+    "canvas": "^2.11.2",
+    "discord.js": "^14.14.1",
     "fs": "^0.0.1-security",
-    "mineflayer": "^4.10.1",
-    "mineflayer-collectblock": "^1.4.1",
-    "mineflayer-pathfinder": "^2.4.4",
+    "mineflayer": "^4.20.0",
+    "mineflayer-pathfinder": "^2.4.5",
     "mineflayer-pvp": "^1.3.2",
-    "path": "^0.12.7",
-    "request": "^2.88.2",
-    "vec3": "^0.1.8"
+    "vec3": "^0.1.10"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0"
   }
 }

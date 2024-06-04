@@ -10,7 +10,7 @@ function askQuestion(question) {
 
   process.stdin.once("data", (data) => {
     const answer = data.toString().trim().toLowerCase();
-    console.log(`You entered: ${answer}`);
+    console.log(`\x1b[38;5;208m${"\x1b[33m" + `Answer: ${answer}` + "\x1b[0m"}`);
 
     if (answer === "r" || answer === "register") {
       console.clear();
@@ -19,7 +19,7 @@ function askQuestion(question) {
       console.clear();
       deleteCommands();
     } else {
-      console.log("You entered an invalid answer. It must be 'register' or 'delete' or their shortcuts 'r' or 'd'.");
+      console.log(`\x1b[38;5;208m${"\x1b[33m" + `Invalid input. Please try again.` + "\x1b[0m"}`);
       askQuestion(question);
     }
   });
@@ -39,18 +39,19 @@ function registerCommands() {
       if ("data" in command && "execute" in command) {
         commands.push(command.data.toJSON());
       } else {
-        console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+        console.log(`\x1b[38;5;208m${"\x1b[33m" + `Warning: ${filePath} is missing a required "data" or "execute" property.` + "\x1b[0m"}`);
       }
     }
   }
 
   (async () => {
     try {
-      console.log(`Started refreshing ${commands.length} application (/) commands.`);
+      console.log(`\x1b[38;5;208m${"\x1b[33m" + `Registering commands:` + "\x1b[0m"} \x1b[36m${commands.map((command) => command.name).join(", ")}\x1b[0m`);
 
       const data = await rest.put(Routes.applicationCommands(clientID), { body: commands });
 
-      console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+      console.log(`\x1b[38;5;208m${"\x1b[33m" + `Registered commands:` + "\x1b[0m"} \x1b[36m${data.map((command) => command.name).join(", ")}\x1b[0m`);
+      console.log(`\x1b[38;5;208m${"\x1b[33m" + `Make sure to refresh your Discord app in order to see changes.` + "\x1b[0m"}`);
       process.exit(0);
     } catch (error) {
       console.error(error);
@@ -61,8 +62,13 @@ function registerCommands() {
 function deleteCommands() {
   rest
     .put(Routes.applicationCommands(clientID), { body: [] })
-    .then(() => console.log("Successfully deleted all application commands.") && process.exit(0))
+    .then(
+      () =>
+        console.log(`\x1b[38;5;208m${"\x1b[33m" + `Deleted all commands.` + "\x1b[0m"}`) &&
+        console.log(`\x1b[38;5;208m${"\x1b[33m" + `Make sure to refresh your Discord app in order to see changes.` + "\x1b[0m"}`) &&
+        process.exit(0)
+    )
     .catch(console.error);
 }
 
-askQuestion("Enter register or delete: ");
+askQuestion(`\x1b[38;5;208m${"\x1b[33m" + `Do you want to register or delete commands? (r/d) ` + "\x1b[36m"}`);

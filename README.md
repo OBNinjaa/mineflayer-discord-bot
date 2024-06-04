@@ -6,24 +6,21 @@
 
 ```json
 {
-  "token": "MTE0Njg3MjEwMjk0Mzc0MDA2Ng.GrXYfb.PHG0dPDci72e80GXecW9r4sM0PXUk-RsAWvD-s",
-  "clientID": "1146872102943740066",
-  "messages": "https://discord.com/api/webhooks/1147156671131562024/tz65Nl0pT_iLpmwvLsXe1ixwruT-7Zg3nvY_SUqqg9I5Cm5nnPlpDb9vwsLWvOUvLj90",
-  "events": "https://discord.com/api/webhooks/1147156706544078910/AZaEf-hyQ9ydFy43-6ElTElLoIMcR8r33DvzuMsqzC1hj9pFZqSifn358h0QkCfmJ_tY",
-  "username": "OBNinjaa",
-  "address": "hypixel.net",
+  "token": "NTIzNDU2Nzg5MDEyMzQ1Njc4.XYZ123.aBcDeFgHiJkLmNoPqRsTuVwXyZ012345",
+  "clientID": "817614688027410452",
+  "host": "0.0.0.0",
   "port": 25565,
-  "version": "1.20",
+  "version": "1.20.4",
+  "username": "Kaveah",
   "auth": "microsoft",
-  "showCoordinates": false
-}
-```
-
-- src/data/homes.json
-
-```json
-{
-  "homes": {}
+  "prefix": ">",
+  "silent": false,
+  "guarding": false,
+  "showCoordinates": true,
+  "logging": true,
+  "master": ["OBNinjaa"],
+  "messages": "1246163933853778030/FGPCU2zvpatCGW2ekix2_ffmOUOmASExmLMOo0ForrTj9YCLKn4zBnTl9srBG8SdXsRx",
+  "events": "1246164053047377962/Z8s7eNai3W3jpRzZbl3aky5Q_iSbb7a74zgwcLUnnVkOLA_l1-ec2cvv8Gm000sPJnlb"
 }
 ```
 

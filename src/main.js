@@ -1,19 +1,19 @@
-const { Client, Collection, Events, GatewayIntentBits } = require("discord.js");
 const fs = require("node:fs");
 const path = require("node:path");
-const mineflayer = require("mineflayer");
+const { Client, Collection, ActivityType, GatewayIntentBits } = require("discord.js");
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent] });
+const { token, clientID } = require("./settings.json");
+const minecraft = require("./minecraft");
 
-const { token } = require("./settings.json");
+client.on("ready", (client) => {
+  console.log(`\x1b[38;5;208m${"\x1b[33m" + `Discord ready:` + "\x1b[0m"} \x1b[32m${client.user.username}\x1b[0m`);
+  client.user.setActivity({ type: ActivityType.Custom, name: "custom", state: "Mineflayer Discord Bot" });
+  client.application?.commands.fetch().catch(console.error);
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+  const bot = minecraft.initialize();
 
-const createBot = require("./bot.js");
-
-client.commands = new Collection();
-client.cooldowns = new Collection();
-
-async function initializeBot() {
-  const bot = createBot();
+  client.commands = new Collection();
+  client.cooldowns = new Collection();
 
   const foldersPath = path.join(__dirname, "commands");
   const commandFolders = fs.readdirSync(foldersPath);
@@ -44,12 +44,6 @@ async function initializeBot() {
       client.on(event.name, (...args) => event.execute(...args, bot));
     }
   }
+});
 
-  try {
-    await client.login(token);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-initializeBot();
+client.login(token);

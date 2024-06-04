@@ -1,9 +1,9 @@
 const mineflayer = require("mineflayer");
-const request = require("request");
+const axios = require("axios");
 const path = require("path");
 const fs = require("fs");
 
-const { events } = require("../settings.json");
+const { events, logging } = require("../../settings.json");
 
 /**
  * @param {mineflayer.Bot} bot
@@ -11,10 +11,11 @@ const { events } = require("../settings.json");
 
 module.exports = (bot) => {
   bot.on("message", (jsonMsg, position) => {
+    if (!logging) return;
     if (position !== "system") return;
 
     const message = jsonMsg.toString();
-    const deaths = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "deaths.json"), "utf8"));
+    const deaths = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "..", "data", "deaths.json"), "utf8"));
 
     function checkDeathMatch(deathMessage, deathPatterns) {
       if (!Array.isArray(deathPatterns)) {
@@ -24,20 +25,19 @@ module.exports = (bot) => {
       for (const pattern of deathPatterns) {
         const regex = new RegExp(pattern.replace("P1", "(\\w+)").replace("P2", "(\\w+)").replace("P3", "(\\w+)"));
         if (regex.test(deathMessage)) {
-          console.log("\x1b[33m%s\x1b[0m", deathMessage);
+          const time = new Date().toLocaleTimeString();
           const username = deathMessage[0].toUpperCase() + deathMessage.substring(1).split(" ")[0];
-          try {
-            request.post(events, {
-              json: {
-                username: username,
-                content: `${deathMessage}`,
-                avatar_url: `https://mc-heads.net/head/${username}`,
-              },
+          console.log(`\x1b[90m[\x1b[0m\x1b[37m${time}\x1b[0m\x1b[90m] \x1b[33m${deathMessage}\x1b[0m`);
+          axios
+            .post(`https://discord.com/api/webhooks/${events}`, {
+              username: username,
+              content: `${deathMessage}`,
+              avatar_url: `https://mineskin.eu/armor/bust/${username}/100.png`,
+            })
+            .catch((error) => {
+              console.log(`\x1b[38;5;208m${"\x1b[33m" + `Error while sending webhook:` + "\x1b[0m"} \x1b[31m${error.message}\x1b[0m`);
             });
-          } catch (error) {
-            console.log("\x1b[31mUnable to send webhook to Discord\x1b[0m");
-            console.log("\x1b[31mMake sure you have a valid webhook in your config \x1b[0m");
-          }
+          break;
         }
       }
     }

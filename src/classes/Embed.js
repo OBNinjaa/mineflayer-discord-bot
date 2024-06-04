@@ -1,11 +1,11 @@
 const { EmbedBuilder } = require("discord.js");
 
 class Embed extends EmbedBuilder {
-  constructor(bot) {
+  constructor(bot, username = bot.username) {
     super();
 
-    this.setThumbnail(`https://crafatar.com/renders/head/${bot.player.uuid}`);
-    this.setColor("#995e2a");
+    this.setThumbnail(`https://mineskin.eu/armor/bust/${username}/100.png`);
+    this.setColor("#fc574c");
     this.setTimestamp();
     this.setFooter({ text: "Mineflayer Discord Bot" });
 
@@ -13,6 +13,19 @@ class Embed extends EmbedBuilder {
   }
 }
 
+class WebhookEmbed {
+  constructor(title, description, username, thumbnail = `https://mineskin.eu/armor/bust/${username}/100.png`) {
+    this.embed = {
+      title,
+      description,
+      color: 16537420,
+      thumbnail: { url: thumbnail },
+      footer: { text: "Mineflayer Discord Bot" },
+    };
+  }
+}
+
 module.exports = {
   Embed,
+  WebhookEmbed,
 };
