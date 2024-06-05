@@ -32,15 +32,15 @@ echo Enter your bots command prefix for ingame commands
 set /p prefix=Prefix: 
 cls
 
-echo Should the bot send messages in chat
+echo Should the bot send messages in chat true or false
 set /p silent=Silent: 
 cls
 
-echo Should coordinates be visible to users in Discord
+echo Should coordinates be visible to users in Discord true or false
 set /p coords=Coordinates: 
 cls
 
-echo Should the bot log ingame messages into Discord
+echo Should the bot log ingame messages into Discord true or false
 set /p logging=Loggin: 
 cls
 
@@ -55,7 +55,7 @@ cls
 
 echo Enter discord webhook you want events to be send to
 echo DO NOT INCLUDE THE https://discord.com/api/webhooks/ PART
-set /p events=Eventa: 
+set /p events=Event: 
 cls
 
 (
