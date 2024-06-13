@@ -6,8 +6,8 @@
 
 ```json
 {
-  "token": "NTIzNDU2Nzg5MDEyMzQ1Njc4.XYZ123.aBcDeFgHiJkLmNoPqRsTuVwXyZ012345",
-  "clientID": "817614688027410452",
+  "token": "<your token here>",
+  "clientID": "<your clientID here>",
   "host": "0.0.0.0",
   "port": 25565,
   "version": "1.20.4",
