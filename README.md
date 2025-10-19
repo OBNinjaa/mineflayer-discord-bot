@@ -1,6 +1,6 @@
-# Command Bot
+# Mineflayer Discord Bot
 
-A powerful and flexible bot that bridges Discord and Minecraft, allowing you to control a `mineflayer` bot from a Discord server.
+Control your bot using Discord slash commands or in-game commands.
 
 ## Features
 
