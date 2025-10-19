@@ -56,8 +56,8 @@ function initialize() {
 
     webhook.send({
       content: message,
-      username: sender,
-      avatarURL: `https://mineskin.eu/armor/bust/${sender}/100.png`,
+      username: sender || 'Invalid Name',
+      avatarURL: `https://mineskin.eu/armor/bust/${sender || bot.username}/100.png`,
     });
   }
 
@@ -93,15 +93,37 @@ function initialize() {
     comms.set();
   });
 
-  bot.on('chat', function (username, message) {
+  const messageSenders = new Map();
+
+  bot.on('chat', (username, message) => {
     comms.run(username, message);
+
+    const now = Date.now();
+    if (!messageSenders.has(username)) {
+      messageSenders.set(username, []);
+    }
+
+    const timestamps = messageSenders.get(username);
+
+    while (timestamps.length > 0 && now - timestamps[0] > 10 * 1000) {
+      timestamps.shift();
+    }
+
+    timestamps.push(now);
+
+    if (timestamps.length > 5) {
+      return;
+    }
+
+    bot.sendWebhook(message, username);
   });
 
   bot.on('error', (err) => {
-    console.log(err.name, err.cause);
+    console.log(err.message);
   });
+
   bot.on('end', () => {
-    console.log(`\x1b[38;5;208m${bot.username} \x1b[0mhas been disconnected, restarting...`);
+    console.log(`\x1b[38;5;208m${bot.username || 'Player'} \x1b[0mhas been disconnected, restarting...`);
     setTimeout(() => {
       initialize();
     }, 5000);
@@ -120,7 +142,7 @@ discordClient.once('clientReady', () => {
   discordClient.user.setPresence({
     activities: [
       {
-        name: 'Minecraft',
+        name: `Minecraft`,
         type: 0,
       },
     ],
