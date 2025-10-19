@@ -17,7 +17,7 @@ Control your bot using Discord slash commands or in-game commands.
 1.  **Clone the repository:**
 
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/OBNinjaa/mineflayer-discord-bot.git
     cd command-bot
     ```
 
