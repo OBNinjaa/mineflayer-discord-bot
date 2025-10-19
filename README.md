@@ -32,7 +32,7 @@ A powerful and flexible bot that bridges Discord and Minecraft, allowing you to 
 
 ### Configuration
 
-1.  Create a `settings.json` file in the root directory of the project.
+1.  Create a `settings.json` file in the root directory of the project or run [configure.bat](configure.bat).
 
 2.  Add the following configuration options to `settings.json` for example:
 
