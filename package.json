@@ -1,35 +1,31 @@
 {
-  "name": "mineflayer-discord-bot",
+  "name": "command-bot",
   "version": "1.0.0",
-  "description": "A custom minecraft bot created using mineflayer which you can control using a discord bot",
-  "main": "src/main.js",
+  "main": "main.js",
   "scripts": {
-    "register": "node src/register.js",
-    "start": "node src/main.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/OBNinjaa/mineflayer-discord-bot.git"
+    "start": "node main.js",
+    "register": "node register.js"
   },
   "keywords": [
-    "minecraft",
-    "discord.js",
-    "mineflayer"
+    "mineflayer",
+    "prismarinejs"
   ],
   "author": "OBNinjaa",
   "license": "ISC",
+  "description": "Control your mineflayer bot using a discord bot",
   "dependencies": {
-    "@discord/embedded-app-sdk": "^1.2.0",
-    "axios": "^1.6.8",
-    "canvas": "^2.11.2",
-    "discord.js": "^14.14.1",
+    "@nxg-org/mineflayer-custom-pvp": "^1.7.6",
+    "canvas": "^3.1.0",
+    "discord.js": "^14.18.0",
     "fs": "^0.0.1-security",
-    "mineflayer": "^4.20.0",
+    "glob": "^11.0.1",
+    "minecraft-assets": "^1.15.0",
+    "mineflayer": "^4.26.0",
     "mineflayer-pathfinder": "^2.4.5",
-    "mineflayer-pvp": "^1.3.2",
-    "vec3": "^0.1.10"
+    "path": "^0.12.7"
   },
   "devDependencies": {
-    "eslint": "^9.0.0"
+    "@eslint/js": "^9.30.1",
+    "eslint": "^9.30.1"
   }
 }
